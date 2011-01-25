@@ -20,7 +20,7 @@ public class Benchmark extends Activity {
         
         for(int i=10;i<=1000;i+=10)
         {
-        	spinnerArrayAdapter.add(i);
+        	spinnerArrayAdapter.add(i); 
         }
     }
 }
