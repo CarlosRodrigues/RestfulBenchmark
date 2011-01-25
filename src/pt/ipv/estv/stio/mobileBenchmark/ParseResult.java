@@ -2,7 +2,7 @@ package pt.ipv.estv.stio.mobileBenchmark;
 
 public class ParseResult {
 	
-	private int time;
+	private long time;
 	private long requestSize;
 	
 	public void setRequestSize(long requestSize) {
@@ -13,11 +13,11 @@ public class ParseResult {
 		return requestSize;
 	}
 	
-	public void setTime(int time) {
-		this.time = time;
+	public void setTime(long l) {
+		this.time = l;
 	}
 	
-	public int getTime() {
+	public long getTime() {
 		return time;
 	}
 		
