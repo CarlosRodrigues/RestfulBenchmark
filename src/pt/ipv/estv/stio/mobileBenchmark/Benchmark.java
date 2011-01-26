@@ -28,9 +28,12 @@ public class Benchmark extends Activity {
         	spinnerArrayAdapter.add(i); 
         } 
         
-        //set the listeners
+        //wire the buttons
         Button jsonButton = (Button)findViewById(R.id.jsonButton);
         jsonButton.setOnClickListener(jsonButtonListener);
+        
+        Button xmlButton = (Button)findViewById(R.id.xmlButton);
+        xmlButton.setOnClickListener(xmlButtonListener);
     }
     
     
@@ -55,8 +58,7 @@ public class Benchmark extends Activity {
 	    	AlertDialog ad = new AlertDialog.Builder(Benchmark.this).create();  
 	    	ad.setCancelable(true); // This blocks the 'BACK' button  
 	    	ad.setMessage(message.toString()); 
-	    	ad.setTitle("JSON Result");
-	    	 
+	    	ad.setTitle("JSON Result");	    	 
 	    	ad.show();  
 	    	
 	    	// Where the definition of the function is (simplest of 4 different):
@@ -74,9 +76,32 @@ public class Benchmark extends Activity {
     private View.OnClickListener xmlButtonListener = new View.OnClickListener() {
 	    @Override
 		public void onClick(View v) {
-			
-	    
-			
+	    	try{
+		    	Spinner recordCountSpinner = (Spinner)findViewById(R.id.recordCountSpinner);	
+		    	WebserviceHelper serviceHelper = new WebserviceHelper();
+		    	ParseResult result= serviceHelper.parseRequest(
+		    			WebserviceFormat.XML,
+		    			Integer.parseInt(
+		    					recordCountSpinner.getSelectedItem().toString()
+		    	));
+		    	
+		    	StringBuilder message = new StringBuilder();
+		    	message.append("Items Parsed: ").append(Integer.parseInt(
+		    					recordCountSpinner.getSelectedItem().toString()));
+		    	message.append("\nTime elapsed (milis): ").append(result.getTime());
+		    	message.append("\nResponse size(bytes): ").append(result.getRequestSize());
+		    	
+		    	AlertDialog ad = new AlertDialog.Builder(Benchmark.this).create();  
+		    	ad.setCancelable(true); 
+		    	ad.setMessage(message.toString()); 
+		    	ad.setTitle("XML Result");	    	 
+		    	ad.show();
+		    	}
+		    	catch(Exception e)
+		    	{
+		    		e.printStackTrace();
+		    	}		
+		    	  
 		}
     };
     
