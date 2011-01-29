@@ -25,7 +25,7 @@ import org.w3c.dom.NodeList;
 
 public class WebserviceHelper {
 
-		private String serverUrl="http://192.168.1.67/restserver/api/benchmark/";
+		private String serverUrl="http://portavermelha.net/restserver/index.php/benchmark/";
 	
 	
 		public WebserviceHelper() {
